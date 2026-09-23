@@ -1,4 +1,4 @@
-from Card import Card
+from Card import *
 
 class Dealer:
     def __init__(self, deck: list[Card], player_count: int):

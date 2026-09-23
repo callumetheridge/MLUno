@@ -1,5 +1,5 @@
-from Card import Card
-from CardColour import CardColour
+from Card import *
+from CardColour import *
 
 class GameManager:
     def __init__(self, player_number: int, deck: list[Card], hands: list[list[Card]]):

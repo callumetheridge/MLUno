@@ -1,4 +1,4 @@
-from Card import Card
+from Card import *
 
 class MoveManager:
     def __init__(self, hands: list[list[Card]], player_order: list[Card]):

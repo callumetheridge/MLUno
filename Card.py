@@ -1,5 +1,5 @@
-from CardType import CardType
-from CardColour import CardColour
+from CardType import *
+from CardColour import *
 
 class Card:
     def __init__(self, type: CardType, colour: CardColour):

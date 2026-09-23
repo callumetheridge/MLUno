@@ -1,6 +1,6 @@
-from CardType import CardType
-from CardColour import CardColour
-from Card import Card
+from CardType import *
+from CardColour import *
+from Card import *
 import random
 
 class DeckBuilder:

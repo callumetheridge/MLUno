@@ -1,38 +1,39 @@
-from Card import Card
+from Card import *
 import os
 import subprocess
 
 class InOutHandler:
-    def __init__(self, hand: list[Card]):
-        self.current_hand == hand
-
+    def __init__(self):
         pass
 
-    def print_display_hand(self: list[Card]):
-        self.clear()
-        for i in range(len(self.current_hand)):
-            print(f"{i+1}: ", self.current_hand[i])
-        print("Type which card would you like to play: ")
-
-    def clear(self):
-        cmd = ["cmd", "/c", "cls"] if os.name == "nt" else ["clear"]
-        subprocess.run(cmd, check=False)
-
-    myAge = None
-while myAge is None:
-    try:
-        myAge = int(input("What's your age? "))
-    except ValueError:
-        print ("Enter an INTEGER, goddammit!!!")
-
-    def take_input(self):
-        #stores user's input in a usable way
-        try:
-            user_input = int(input())
-        except ValueError:
-            print("bruh enter an integer: ")
-        return(self.current_hand[user_input])
+    def get_next_card(self, current_hand: list[Card]) -> Card:
+        self.clear_terminal()
         
+        for i in range(len(current_hand)):
+            print(f"{i + 1}: ", current_hand[i])
+            
+        return self.get_card_input(current_hand)
 
-    def check_input(self):
-        pass
+    def clear_terminal(self):
+        command = ["cmd", "/c", "cls"] if os.name == "nt" else ["clear"]
+        subprocess.run(command, check=False)
+
+    def get_card_input(self, current_hand: list[Card]) -> Card:
+        user_input = None
+        getting_input = True
+        
+        while getting_input:
+            print("Select card: ", end="")
+            
+            try:
+                user_input = int(input())
+                
+                if user_input > len(current_hand) or user_input <= 0:
+                    raise ValueError
+                
+                getting_input = False
+                
+            except ValueError:
+                print("Invalid input")
+            
+        return current_hand[user_input - 1]
