@@ -14,8 +14,8 @@ class CardType(Enum):
     REVERSE = 10 
     SKIP = 11
     DRAW_TWO = 12
-    WILD = 13
-    WILD_DRAW_FOUR = 14
+    CHANGE_COLOUR = 13
+    DRAW_FOUR = 14
     
     def __str__(self) -> str:
         return self.name
