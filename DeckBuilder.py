@@ -35,6 +35,9 @@ class DeckBuilder:
     def print_deck(self):
         for card in self.deck:
             print(card)
+
+    def print_deck_size(self):
+        print(len(self.deck))
     
     def get_deck(self) -> dict[CardColour, int]:
         return self.deck

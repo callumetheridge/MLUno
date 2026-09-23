@@ -25,3 +25,6 @@ class Dealer:
                 line += f"{self.hands[i][j]}, "
                 
             print(line[:-2])
+
+    def get_hands(self):
+        return self.hands
