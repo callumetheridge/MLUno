@@ -1,13 +1,12 @@
 from DeckBuilder import *
 from Dealer import *
 from InOutHandler import *
+from GameManager import *
 
 def main():
-    deck_builder = DeckBuilder()
-    deck_builder.shuffle_deck()
-    dealer = Dealer(deck_builder.get_deck(), 5)
-    inoutHandler = InOutHandler()
-    inoutHandler.get_next_card(dealer.get_hands()[0])
+    player_count = 2
+    game_manager = GameManager(player_count)
+    game_manager.run_game()
 
 if __name__ == "__main__":
     main()
