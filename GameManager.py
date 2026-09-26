@@ -19,7 +19,7 @@ class GameManager:
     def increment_player_index(self, current_player_index: int) -> int:
         return (current_player_index + 1) % self.player_count
     
-    def run_game(self):
+    def run_game(self) -> int:
         hands = self.dealer.get_hands()
         previous_card = self.dealer.get_first_card()
         placed_cards = [previous_card]
@@ -39,8 +39,9 @@ class GameManager:
             has_valid_card = MoveHandler.has_valid_card(previous_card, hands[current_player_index], pickup_needed)
             
             if not has_valid_card:
-                self.dealer.pickup_cards(pickup_count if pickup_count != 0 else 1, current_player_index)
-                in_out_handler.show_pickup(hands[current_player_index], pickup_count if pickup_count != 0 else 1, current_player_index + 1)
+                updated_pickup_count = pickup_count if pickup_count != 0 else 1
+                self.dealer.pickup_cards(updated_pickup_count, current_player_index)
+                in_out_handler.show_pickup(hands[current_player_index], updated_pickup_count, current_player_index + 1)
                 current_player_index = self.increment_player_index(current_player_index)
                 
                 if pickup_count != 0:
@@ -51,10 +52,15 @@ class GameManager:
             
             next_card = in_out_handler.get_next_card(hands[current_player_index], previous_card, current_player_index + 1, False)
             hands[current_player_index].remove(next_card)
+            
+            if len(hands[current_player_index]) == 0:
+                return current_player_index + 1
+            
             placed_cards.append(next_card)
             pickup_on_previous_turn = False
-            pickup_count = 0    
             current_player_index, colour_pick_needed = move_handler.handle_move(current_player_index, next_card)
             
             if colour_pick_needed:
                 next_card.set_colour(in_out_handler.get_colour_choice())
+            
+        return -1

@@ -17,7 +17,7 @@ class InOutHandler:
 
     def get_next_card(self, current_hand: list[Card], previous_card: Card, current_player_number: int, pickup_needed: bool) -> Card:
         InOutHandler.clear_terminal()
-        self.print_in_colour(f"Player {current_player_number + 1}'s turn", self.WHITE)
+        self.print_in_colour(f"Player {current_player_number}'s turn", self.WHITE)
         print(f"Previous card: {previous_card}")        
         InOutHandler.print_hand(current_hand)
             
