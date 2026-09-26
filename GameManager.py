@@ -35,8 +35,7 @@ class GameManager:
         while running:
             previous_card = placed_cards[-1]
             pickup_count += move_handler.get_additional_pickup_amount(previous_card, pickup_on_previous_turn)
-            pickup_needed = pickup_count != 0
-            has_valid_card = MoveHandler.has_valid_card(previous_card, hands[current_player_index], pickup_needed)
+            has_valid_card = MoveHandler.has_valid_card(previous_card, hands[current_player_index], pickup_count != 0)
             
             if not has_valid_card:
                 updated_pickup_count = pickup_count if pickup_count != 0 else 1
