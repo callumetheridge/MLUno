@@ -23,10 +23,30 @@ class InOutHandler:
             
         return self.get_card_input(current_hand, previous_card, pickup_needed)
     
+    def play_from_pickup(self, next_card: Card) -> bool:
+        self.print_in_colour(f"Do you want to play the card you picked up?: {next_card}", self.WHITE)
+        
+        choice = ""
+        getting_input = True
+        
+        while getting_input:
+            print("Y/N: ", end="")
+            choice = input().lower()
+            
+            if choice == "y" or choice == "n":
+                getting_input = False
+            else:
+                print("Invalid input")
+                
+        return choice == "y"
+            
+    
     def show_pickup(self, current_hand: list[Card], pickup_count: int, current_player_number: int):
         InOutHandler.clear_terminal()
         self.print_in_colour(f"Player {current_player_number} has picked up {pickup_count} cards", self.WHITE)
         InOutHandler.print_hand(current_hand)
+    
+    def end_turn(self):
         print("Press enter to continue: ", end="")
         input()
 
