@@ -42,4 +42,5 @@ class Card:
         self.colour = colour
     
     def __str__(self) -> str:
-        return f"{self.get_console_colour()}{str(self.type).replace("_", " ")}{self.RESET}"
+        return f"{self.get_console_colour()}{str(self.type)}{self.RESET}"
+    
