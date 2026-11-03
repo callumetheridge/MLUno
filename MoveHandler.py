@@ -55,7 +55,7 @@ class MoveHandler:
         colour_pick_needed = False
         
         if next_card_type == CardType.REVERSE:
-            self.reversed = True
+            self.reversed = not self.reversed
             return self.get_next_player_index(current_player_index, 1), colour_pick_needed
         
         if next_card_type == CardType.SKIP:
